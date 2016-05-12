@@ -14,9 +14,9 @@ Package ROS visant à effectuer un suivi de trajectoire pour ardrone 2.0 par det
 ## Usage
 
 	Start the ardrone driver
-		roslaunch ddale_ardrone_nav ardrone_driver.launch
+		$ roslaunch ddale_ardrone_nav ardrone_driver.launch
 	Start the ardrone navigation
-		roslaunch ddlae_ardrone_nav ardrone_navigation.launch
+		$ roslaunch ddlae_ardrone_nav ardrone_navigation.launch
 
 ## Contributing
 
@@ -29,6 +29,6 @@ Package ROS visant à effectuer un suivi de trajectoire pour ardrone 2.0 par det
 ## License & Credits
 
 Projet réalisé dans le cadre du projet GATE (cycle ingénieur première année Telecom-SudParis) par le groupe Dedale.
-Plus
+
  + Authors Website: 
  + School webpage:

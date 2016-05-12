@@ -16,7 +16,7 @@ Package ROS visant à effectuer un suivi de trajectoire pour ardrone 2.0 par det
 	Start the ardrone driver
 		$ roslaunch ddale_ardrone_nav ardrone_driver.launch
 	Start the ardrone navigation
-		$ roslaunch ddlae_ardrone_nav ardrone_navigation.launch
+		$ roslaunch ddale_ardrone_nav ardrone_navigation.launch
 
 ## Contributing
 

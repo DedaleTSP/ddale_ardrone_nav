@@ -30,14 +30,14 @@ include_directories(
 # add_dependencies(ardrone1stTest ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 
-add_executable(ardrone1stTest_node src/test.cpp)
+add_executable(takeoffandland src/test.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(ardrone1stTest_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(takeoffandland ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(ardrone1stTest_node
+target_link_libraries(takeoffandland
    ${catkin_LIBRARIES}
  )
 

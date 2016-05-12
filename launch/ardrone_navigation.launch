@@ -1,4 +1,4 @@
 <launch>	
 	<!-- Launches the keyboard controller -->
-	<node name="ardrone1stTest_node" pkg="ardrone1stTest" type="ardrone1stTest_node" required="true"/>
+	<node name="takeoffandland" pkg="ddale_ardrone_nav" type="takeoffandland" required="true"/>
 </launch>

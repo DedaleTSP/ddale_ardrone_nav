@@ -7,6 +7,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+set(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}")
+
 ## Generate added messages and services with any dependencies listed here
  generate_messages(
    DEPENDENCIES

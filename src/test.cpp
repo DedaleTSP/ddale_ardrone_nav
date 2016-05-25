@@ -3,13 +3,20 @@
 #include "geometry_msgs/Twist.h"
 #include <geometry_msgs/Vector3.h>
 #include <ardrone_autonomy/Navdata.h>
+#include <thread>
+#include <sstream> 
+#include <string>
+
+void Sleepfor(int ms)
+{
+	std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+}
+
 
 int main(int argc, char **argv)
 {
 	ros::init(argc, argv, "takeoffAndLand");
 	ros::NodeHandle n;
-	
-	ros::Subscriber nav_sub = n.subscribe("/ardrone/navdata", 1);
 	
 	ros::Publisher takeoff_pub = n.advertise<std_msgs::Empty>(n.resolveName("ardrone/takeoff"),1,true);
 	ros::Publisher land_pub = n.advertise<std_msgs::Empty>(n.resolveName("ardrone/land"),1,true);
@@ -22,22 +29,42 @@ int main(int argc, char **argv)
   	{
     		takeoff_pub.publish(emp_msg);
 
-		ros::Duration(0.5).sleep();
-
-		twist_msg.angular.z=1;
-		twist_pub.publish(twist_msg);
-
-		ros::Duration(0.5).sleep();
-
-		twist_msg.angular.z=-0.5;
-		twist_pub.publish(twist_msg);
-
-		ros::Duration(0.5).sleep();
+		Sleepfor(5000);
 
 		twist_msg.angular.z=0;
-		twist_pub.publish(twist_msg);
+		twist_msg.linear.x=0.1;    
+                twist_pub.publish(twist_msg);
+                Sleepfor(1000);
 
-		ros::Duration(0.5).sleep();
+		twist_msg.linear.x=0;
+		twist_msg.angular.z=0.5;
+		twist_pub.publish(twist_msg);
+		Sleepfor(2000);
+
+		twist_msg.angular.z=0;
+		twist_msg.linear.x=0.1;
+		twist_pub.publish(twist_msg);
+		Sleepfor(1000);
+
+		twist_msg.angular.x=0;
+		twist_msg.angular.z=0.5;
+                twist_pub.publish(twist_msg);
+                Sleepfor(2000); 
+
+		twist_msg.angular.z=0;
+		twist_msg.linear.x=0.1;    
+                twist_pub.publish(twist_msg);
+                Sleepfor(1000);
+
+		twist_msg.linear.x=0;
+		twist_msg.angular.z=0.5; 
+                twist_pub.publish(twist_msg);
+                Sleepfor(2000); 
+
+		twist_msg.angular.z=0;
+		twist_msg.linear.x=0.1;    
+                twist_pub.publish(twist_msg);
+                Sleepfor(1000);
 
 		land_pub.publish(emp_msg);
 

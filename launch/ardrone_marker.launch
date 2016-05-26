@@ -1,0 +1,3 @@
+<launch>	
+	<node name="readmarker" pkg="ddale_ardrone_nav" type="marker" required="true"/>
+</launch>

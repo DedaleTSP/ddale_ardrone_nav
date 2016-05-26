@@ -1,4 +1,3 @@
 <launch>	
-	<!-- Launches the keyboard controller -->
 	<node name="takeoffandland" pkg="ddale_ardrone_nav" type="takeoffandland" required="true"/>
 </launch>

@@ -1,8 +1,11 @@
 #include "ros/ros.h"
+#include <ros/console.h>
 #include "std_msgs/Empty.h"
 #include "geometry_msgs/Twist.h"
 #include <geometry_msgs/Vector3.h>
-#include <ardrone_autonomy/Navdata.h>
+#include <ardrone_autonomy/Navdata.h>i
+#include <ar_track_alvar_msgs/AlvarMarker.h>
+#include <ar_track_alvar_msgs/AlvarMarkers.h>
 #include <thread>
 #include <sstream> 
 #include <string>
@@ -11,7 +14,6 @@ void Sleepfor(int ms)
 {
 	std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
-
 
 int main(int argc, char **argv)
 {

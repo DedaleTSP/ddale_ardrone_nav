@@ -24,7 +24,7 @@ void Sleepfor(int ms)
 {
 	 boost::this_thread::sleep_for(boost::chrono::milliseconds(ms));
 }
- void chatterCallback(const ardrone_autonomy::NavdataConstPtr msg)
+ void chatterCallback(const ardrone_autonomy::Navdata::ConstPtr msg)
 {
      	
      ardrone_autonomy::Navdata lastMsg = *msg;

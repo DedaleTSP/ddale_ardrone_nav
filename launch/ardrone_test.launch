@@ -1,0 +1,3 @@
+<launch>	
+	<node name="testdrone" pkg="ddale_ardrone_nav" type="testdrone" required="true"/>
+</launch>

@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "readmarker");
 	ros::NodeHandle n;
 	
-	ros::Subscriber sub = n.subscribe("/ar_pose_marker", 1000, markerCallback);
+	ros::Subscriber sub = n.subscribe("/ar_pose_marker", 1000, markerCallBack);
 
 	ros::Publisher takeoff_pub = n.advertise<std_msgs::Empty>(n.resolveName("ardrone/takeoff"),1,true);
 	ros::Publisher land_pub = n.advertise<std_msgs::Empty>(n.resolveName("ardrone/land"),1,true);

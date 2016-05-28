@@ -3,7 +3,7 @@
 #include "std_msgs/Empty.h"
 #include "geometry_msgs/Twist.h"
 #include <geometry_msgs/Vector3.h>
-#include <ardrone_autonomy/Navdata.h>i
+#include <ardrone_autonomy/Navdata.h>
 #include <ar_track_alvar_msgs/AlvarMarker.h>
 #include <ar_track_alvar_msgs/AlvarMarkers.h>
 #include <thread>

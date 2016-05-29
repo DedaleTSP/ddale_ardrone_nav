@@ -70,7 +70,6 @@ int main(int argc, char **argv)
 
 	while(markerid == -1)
 	{
-		ROS_INFO("Waiting for callback");
 		ros::spinOnce();
 	}
 	

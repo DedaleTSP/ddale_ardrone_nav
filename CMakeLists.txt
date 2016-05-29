@@ -33,22 +33,22 @@ include_directories(
 
 
 #add_executable(takeoffandland src/nav.cpp)
-#add_executable(readmarker src/marker.cpp)
+add_executable(readmarker src/marker.cpp)
 add_executable(testdrone src/test.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 #add_dependencies(takeoffandland ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-#add_dependencies(readmarker ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(readmarker ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(testdrone ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 #target_link_libraries(takeoffandland
 #   ${catkin_LIBRARIES}
 # )
-#target_link_libraries(readmarker
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(readmarker
+   ${catkin_LIBRARIES}
+ )
 target_link_libraries(testdrone
    ${catkin_LIBRARIES}
  )

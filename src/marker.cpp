@@ -11,8 +11,12 @@
 #include <sstream> 
 #include <string>
 #include <iostream>
+#include <stdio.h>
 
 using namespace std;
+
+int markerid = -1;
+geometry_msgs::PoseWithCovariance markerpose;
 
 std::string FloatToString(float n)
 {
@@ -31,10 +35,10 @@ void Sleepfor(int ms)
      	
      aruco_msgs::MarkerArray lastMsg = *msg;
      aruco_msgs::Marker lastMarker = lastMsg.markers[0];
-     int markerid = int();
-     geometry_msgs::PoseWithCovariance markerpose; 
+      
      markerid = lastMarker.id;
      markerpose = lastMarker.pose;
+     
      ROS_INFO("I heard: %i]",markerid);
      //ROS_INFO("I heard: [%s]", FloatToString(msg->rotZ).c_str());
      //std::string X, Y, Z; 
@@ -60,36 +64,50 @@ int main(int argc, char **argv)
 	ros::Publisher twist_pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 1);
 	geometry_msgs::Twist twist_msg;	
 	
-	/*takeoff_pub.publish(emp_msg);
-	//ros::Duration(3).sleep();
+	start:
+	while(markerid == -1)
+	{
+		ros::spin();
+	}
 	
-	//ros::spinOnce();
-	//ROS_INFO("##mycontroller:z=1");
-	//twist_msg.angular.z=1;
-	//twist_pub.publish(twist_msg);
-	//ros::Duration(2).sleep();
+	switch(markerid)
+	{
+		case '0':
+			takeoff_pub.publish(emp_msg;)
+			goto start;
 
-	ros::spinOnce();
-	ROS_INFO("##mycontroller:z=0");
-	twist_msg.angular.z=0;
-	twist_pub.publish(twist_msg);
-	ros::Duration(2).sleep();
+		case '1':
+			twist_msg.linear.x = 0.1;
+			twist_pub.publish(twist_msg);
+			ros::Duration(1).sleep();;
+			twist_msg.linear.x = 0;
+			twist_pub.publish(twist_msg);
+			goto start;
 
-	ros::spinOnce();
-	ROS_INFO("##mycontroller:z=-1");
-	twist_msg.angular.z=-1;
-	twist_pub.publish(twist_msg);
-	ros::Duration(2).sleep();
+		case '2':
+			twist_msg.angular.z = -0.1;
+			twist_pub.publish(twist_msg);
+			ros::Duration(2).sleep();;
+			twist_msg.angular.z = 0;
+			twist_pub.publish(twist_msg);
+			goto start;
+		case '3':
+			twist_msg.angular.z = 0.1;
+			twist_pub.publish(twist_msg);
+			ros::Duration(2).sleep();
+			twist_msg.angular.z = 0;
+			twist_pub.publish(twist_msg);
+			goto start;
 
-	ros::spinOnce();
-	ROS_INFO("##mycontroller:z=0");
-	twist_msg.angular.z=0;
-	twist_pub.publish(twist_msg);
-	ros::Duration(2).sleep();
-	*/
-	//ros::Duration(2).sleep();
-	//land_pub.publish(emp_msg);
-	//ros::Duration(2).sleep();
-	ros::spin();
+		case '4':
+			land_pub.publish(emp_msg);
+			goto end;
+
+		default:
+			goto start;
+	}
+	
+	end:
+
 	return 0;
 }

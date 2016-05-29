@@ -30,7 +30,7 @@ void Sleepfor(int ms)
 {
      	
      aruco_msgs::MarkerArray lastMsg = *msg;
-     int markerid;
+     int markerid = int();
      geometry_msgs::PoseWithCovariance markerpose 
      markerid = lastMsg.id
      markerpose = lastMsg.pose

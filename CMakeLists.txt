@@ -3,7 +3,6 @@ project(ddale_ardrone_nav)
 
 find_package(catkin REQUIRED COMPONENTS
   ardrone_autonomy
-  ar_track_alvar
   roscpp
   std_msgs
 )

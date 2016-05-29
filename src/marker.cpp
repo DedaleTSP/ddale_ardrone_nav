@@ -72,11 +72,11 @@ int main(int argc, char **argv)
 	
 	switch(markerid)
 	{
-		case '0':
+		case 0:
 			takeoff_pub.publish(emp_msg);
 			goto start;
 
-		case '1':
+		case 1:
 			twist_msg.linear.x = 0.1;
 			twist_pub.publish(twist_msg);
 			ros::Duration(1).sleep();;
@@ -84,14 +84,14 @@ int main(int argc, char **argv)
 			twist_pub.publish(twist_msg);
 			goto start;
 
-		case '2':
+		case 2:
 			twist_msg.angular.z = -0.1;
 			twist_pub.publish(twist_msg);
 			ros::Duration(2).sleep();;
 			twist_msg.angular.z = 0;
 			twist_pub.publish(twist_msg);
 			goto start;
-		case '3':
+		case 3:
 			twist_msg.angular.z = 0.1;
 			twist_pub.publish(twist_msg);
 			ros::Duration(2).sleep();
@@ -99,12 +99,9 @@ int main(int argc, char **argv)
 			twist_pub.publish(twist_msg);
 			goto start;
 
-		case '4':
+		case 4:
 			land_pub.publish(emp_msg);
 			goto end;
-
-		default:
-			goto start;
 	}
 	
 	end:

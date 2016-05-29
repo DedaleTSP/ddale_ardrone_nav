@@ -32,9 +32,9 @@ void Sleepfor(int ms)
      aruco_msgs::MarkerArray lastMsg = *msg;
      int markerid;
      geometry_msgs::PoseWithCovariance markerpose 
-     id = lastMsg.id
+     markerid = lastMsg.id
      markerpose = lastMsg.pose
-     ROS_INFO("I heard: %i]",id);
+     ROS_INFO("I heard: %i]",markerid);
      //ROS_INFO("I heard: [%s]", FloatToString(msg->rotZ).c_str());
      //std::string X, Y, Z; 
      //X = FloatToString(x); 

@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 	switch(markerid)
 	{
 		case '0':
-			takeoff_pub.publish(emp_msg;)
+			takeoff_pub.publish(emp_msg);
 			goto start;
 
 		case '1':

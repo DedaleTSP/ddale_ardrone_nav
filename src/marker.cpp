@@ -63,20 +63,28 @@ int main(int argc, char **argv)
 
 	ros::Publisher twist_pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 1);
 	geometry_msgs::Twist twist_msg;	
-	
+
 	start:
+
+	ROS_INFO("Looking for a marker");
+
 	while(markerid == -1)
 	{
+		ROS_INFO("Waiting for callback");
 		ros::spin();
 	}
 	
+	ROS_INFO("Marker found");
+
 	switch(markerid)
 	{
 		case 0:
+			ROS_INFO("Taking off");
 			takeoff_pub.publish(emp_msg);
 			goto start;
 
 		case 1:
+			ROS_INFO("Going Forward"); 
 			twist_msg.linear.x = 0.1;
 			twist_pub.publish(twist_msg);
 			ros::Duration(1).sleep();;
@@ -85,6 +93,7 @@ int main(int argc, char **argv)
 			goto start;
 
 		case 2:
+			ROS_INFO("Turning clockwise");
 			twist_msg.angular.z = -0.1;
 			twist_pub.publish(twist_msg);
 			ros::Duration(2).sleep();;
@@ -92,6 +101,7 @@ int main(int argc, char **argv)
 			twist_pub.publish(twist_msg);
 			goto start;
 		case 3:
+			ROS_INFO("Turning counter clockwise");
 			twist_msg.angular.z = 0.1;
 			twist_pub.publish(twist_msg);
 			ros::Duration(2).sleep();
@@ -100,11 +110,16 @@ int main(int argc, char **argv)
 			goto start;
 
 		case 4:
+			ROS_INFO("Landing");
 			land_pub.publish(emp_msg);
 			goto end;
 	}
 	
+	ROS_INFO("Out of switch");
+
 	end:
+
+	ROS_INFO("Exiting program");
 
 	return 0;
 }

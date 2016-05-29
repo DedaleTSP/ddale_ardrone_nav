@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 	start:
 
 	ROS_INFO("Looking for a marker");
-
+	markerid = -1;
 	while(markerid == -1)
 	{
 		ros::spinOnce();

@@ -94,16 +94,16 @@ int main(int argc, char **argv)
 			goto start;
 
 		case 2:
-			ROS_INFO("Turning clockwise");
-			twist_msg.angular.z = -0.1;
+			ROS_INFO("Turning counter clockwise");
+			twist_msg.angular.z = 0.5;
 			twist_pub.publish(twist_msg);
 			ros::Duration(2).sleep();;
 			twist_msg.angular.z = 0;
 			twist_pub.publish(twist_msg);
 			goto start;
 		case 3:
-			ROS_INFO("Turning counter clockwise");
-			twist_msg.angular.z = 0.1;
+			ROS_INFO("Turning clockwise");
+			twist_msg.angular.z = -0.5;
 			twist_pub.publish(twist_msg);
 			ros::Duration(2).sleep();
 			twist_msg.angular.z = 0;

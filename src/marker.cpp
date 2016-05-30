@@ -16,6 +16,7 @@
 using namespace std;
 
 int markerid = -1;
+int previousmarkerid = -2;
 geometry_msgs::PoseWithCovariance markerpose;
 
 std::string FloatToString(float n)
@@ -36,6 +37,7 @@ void Sleepfor(int ms)
      aruco_msgs::MarkerArray lastMsg = *msg;
      aruco_msgs::Marker lastMarker = lastMsg.markers[0];
       
+     previousmarkerid = markerid;
      markerid = lastMarker.id;
      markerpose = lastMarker.pose;
      
@@ -68,7 +70,7 @@ int main(int argc, char **argv)
 
 	ROS_INFO("Looking for a marker");
 	markerid = -1;
-	while(markerid == -1)
+	while(markerid != previousmarkerid)
 	{
 		ros::spinOnce();
 	}

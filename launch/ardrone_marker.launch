@@ -1,3 +1,83 @@
-<launch>	
-	<node name="readmarker" pkg="ddale_ardrone_nav" type="readmarker" output="screen" required="true"/>
+<launch>
+	<!-- Launch the ardrone driver -->	
+		<!-- IPv4 address of your drone -->
+	    	<arg name="ip" default="192.168.1.1" />
+	 	<!-- Ultrasound frequency (7 or 8). -->
+	  	<arg name="freq" default="8" />
+	    	<node name="ardrone_driver" pkg="ardrone_autonomy" type="ardrone_driver"
+		  	output="screen" clear_params="true" args="-ip $(arg ip)">
+		<param name="outdoor" value="0" />
+		<param name="max_bitrate" value="4000" />
+		<param name="bitrate" value="4000" />
+		<param name="navdata_demo" value="0" />
+		<param name="flight_without_shell" value="0" />
+		<param name="altitude_max" value="4000" />
+		<param name="altitude_min" value="50" />
+		<param name="euler_angle_max" value="0.21" />
+		<param name="control_vz_max" value="700" />
+		<param name="control_yaw" value="1.75" />
+		<param name="detect_type" value="10" />
+		<param name="enemy_colors" value="3" />
+		<param name="detections_select_h" value="32" />
+		<param name="detections_select_v_hsync" value="128" />
+		<param name="enemy_without_shell" value="0" />
+		<param name="ultrasound_freq" value="$(arg freq)" />
+
+		<param name="enable_legacy_navdata" value="true" />	
+
+		<param name="enable_navdata_demo" value="true" />
+		<param name="enable_navdata_time" value="true" />
+		<param name="enable_navdata_raw_measures" value="true" />
+		<param name="enable_navdata_phys_measures" value="true" />
+		<param name="enable_navdata_gyros_offsets" value="true" />
+		<param name="enable_navdata_euler_angles" value="true" />
+		<param name="enable_navdata_references" value="true" />
+		<param name="enable_navdata_trims" value="true" />
+		<param name="enable_navdata_rc_references" value="true" />
+		<param name="enable_navdata_pwm" value="true" />
+		<param name="enable_navdata_altitude" value="true" />
+		<param name="enable_navdata_vision_raw" value="true" />
+		<param name="enable_navdata_vision_of" value="true" />
+		<param name="enable_navdata_vision" value="true" />
+		<param name="enable_navdata_vision_perf" value="true" />
+		<param name="enable_navdata_trackers_send" value="true" />
+		<param name="enable_navdata_vision_detect" value="true" />
+		<param name="enable_navdata_watchdog" value="true" />
+		<param name="enable_navdata_adc_data_frame" value="true" />
+		<param name="enable_navdata_video_stream" value="true" />
+		<param name="enable_navdata_games" value="true" />
+		<param name="enable_navdata_pressure_raw" value="true" />
+		<param name="enable_navdata_magneto" value="true" />
+		<param name="enable_navdata_wind_speed" value="true" />
+		<param name="enable_navdata_kalman_pressure" value="true" />
+		<param name="enable_navdata_hdvideo_stream" value="true" />
+		<param name="enable_navdata_wifi" value="true" />
+		<param name="enable_navdata_zimmu_3000" value="true" />
+
+		<param name="looprate" value="50" />
+
+		<param name="realtime_navdata" value="true" />
+		<param name="realtime_video" value="true" />
+		<!-- Covariance Values (3x3 matrices reshaped to 1x9)-->
+		<rosparam param="cov/imu_la">[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1]</rosparam>
+		<rosparam param="cov/imu_av">[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]</rosparam>
+		<rosparam param="cov/imu_or">[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 100000.0]</rosparam>
+	   	</node>	
+	
+	<!-- Launch the arUco marker tracker node -->	
+		<arg name="markerSize" default="0.05"/> <!-- in m -->
+		<arg name="side" default="left"/>
+		<arg name="ref_frame" default="base"/> <!-- leave empty and the pose will be published wrt param parent_name -->
+	
+		<node pkg="aruco_ros" type="marker_publisher" name="aruco_marker_publisher">
+			<remap from="/camera_info" to="/ardrone/bottom/camera_info" />
+			<remap from="/image" to="/ardrone/bottom/image_raw" />
+			<param name="image_is_rectified" value="True"/>
+			<param name="marker_size" value="$(arg markerSize)"/>
+			<param name="reference_frame" value="$(arg ref_frame)"/> <!-- frame in which the marker pose will be refered -->
+			<param name="camera_frame" value="$(arg side)_hand_camera"/>
+		</node>	
+
+	<!-- Launch the readmarker node -->
+		<node name="readmarker" pkg="ddale_ardrone_nav" type="readmarker" output="screen" required="true"/>
 </launch>
